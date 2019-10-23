@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.Pane
 import kotlin.math.abs
 import kotlin.math.sqrt
+import kotlin.system.exitProcess
 
 class FittsLawScene {
     val scene: Scene
@@ -19,9 +20,6 @@ class FittsLawScene {
     private var lastDelay: Long = 0
     private var startCoordinate = Coordinate(0.0, 0.0)
     private var targetCoordinate = Coordinate(0.0, 0.0)
-
-    private var midX: Double = 0.0
-    private var midY: Double = 0.0
 
     private lateinit var monsterSize: Pair<Double, Double>
 
@@ -67,7 +65,7 @@ class FittsLawScene {
     private fun prepareMonsterSize() {
         val img = Image("monster.png")
         val width = img.width
-        val height = img.width
+        val height = img.height
 
         monsterSize = Pair(width, height)
     }
@@ -134,10 +132,13 @@ class FittsLawScene {
                     )
             )
 
-            //end game
+            //end round
             roundId++
-
             layout.children.remove(image)
+
+            if (roundId > 140) { //end game
+                exitProcess(0)
+            }
 
             spawnGreenCycleImage(layout)
         }
