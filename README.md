@@ -7,3 +7,4 @@
 ### TODO
 
 * Nur Auge anklicken, nicht komplettes Monster klicken
+* Gleiche Anzahl an Größen

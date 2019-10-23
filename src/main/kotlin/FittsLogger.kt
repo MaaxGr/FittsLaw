@@ -4,6 +4,10 @@ class FittsLogger() {
 
     private val fileWriter = FileWriter("log-${System.currentTimeMillis()}.txt")
 
+    init {
+        fileWriter.append("ROUND;MILLIS;DIFF;SCALE;DELAY").append(System.lineSeparator()).flush()
+    }
+
     fun log(message: Message) {
         //log to console
         println(message)
@@ -15,7 +19,7 @@ class FittsLogger() {
     data class Message(val roundId: Int, val millis: Long, val diff: Double, val scaleFactor: Double, val delay: Long) {
 
         fun asCSV(): String {
-            return "$roundId;$millis;$diff;$scaleFactor,$delay"
+            return "$roundId;$millis;$diff;$scaleFactor;$delay"
         }
 
     }
